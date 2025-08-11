@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2 id="title">SalaIT</h2>
+
+  <p id="paragraph">There are many IT courses available:</p>
+
+  <p>Registered List:</p>
+  <p id="registeredList"></p>
+  <p>------------------------</p>
+
+
+  <form action="">
+    <div style="margin-top: 15px;">
+      <label for="">Username</label>
+      <input type="text" id="username"> <br>
+      <span id="usernameError"></span>
+    </div>
+
+    <div style="margin-top: 15px;">
+      <label for="">Password</label>
+      <input type="password" id="password"> <br>
+      <span id="passwordError"></span>
+    </div>
+
+   <div style="margin-top: 15px;">
+     <button id="loginBtn" type="button">Login</button>
+    <button id="resetBtn" type="button">Reset</button> 
+    <button id="registerBtn" type="button">Register</button>
+    <br>
+   </div>
+    <span id="successMsg"></span>
+  </form>
+
+  <script>
+
+    const loginBtn = document.getElementById('loginBtn')
+    const username = document.getElementById('username')
+    const pwd = document.getElementById('password')
+    const usernameError = document.getElementById('usernameError')
+    const pwdError = document.getElementById('passwordError')
+    const successMsg = document.getElementById('successMsg')
+    const resetBtn = document.getElementById('resetBtn')
+    const registerBtn = document.getElementById('registerBtn')
+    const registeredList = document.getElementById('registeredList')
+
+    let registeredUsername= ''
+    let registeredPassword=''
+
+    loginBtn.addEventListener('click', function(){
+      validation()
+      login()
+    })
+
+    resetBtn.addEventListener('click', function(){
+      reset()
+    })
+
+    registerBtn.addEventListener('click', function(){
+      register()
+    })
+
+    function register(){
+      registeredUsername = username.value
+      registeredPassword =  pwd.value
+
+      registeredList.innerText = registeredUsername
+    }
+
+    function reset(){
+      username.value = ""
+      pwd.value = ''
+
+      usernameError.innerText = ''
+      pwdError.innerText = ''
+      successMsg.innerText = ''
+    }
+
+    function login(){
+      
+      let isCorrect = false
+
+      if(username.value === registeredUsername && pwd.value === registeredPassword){
+        isCorrect =true
+      }
+
+      if (isCorrect === true){
+        successMsg.innerText = "Login successful"
+        successMsg.style.color = "green"
+      }
+
+      if(isCorrect === false){
+        successMsg.innerText = "Incorrect username or password"
+        successMsg.style.color = 'red'
+      }
+    }
+
+    function validation(){
+      if(username.value === ""){
+        usernameError.innerText = "Enter your username"
+        usernameError.style.color = 'red'
+      }
+
+      if(pwd.value === ""){
+        pwdError.innerText = "Enter your password"
+        pwdError.style.color = 'red'
+      }
+    }
+
+
+
+    // const title = document.getElementById('title')
+    // console.log(title)
+
+    // const para = document.getElementById('paragraph')
+    // console.log(para)
+
+    // // document.getElementById('result').innerHTML = title.innerText + "<br />" + para.innerText
+
+    // const courses = [
+    //   'Mobile development',
+    //   'Basic web development',
+    //   'Flutter',
+    //   'Laravel',
+    //   'Telegram bot for business'
+    // ]
+
+    // console.log("Length", courses.length)
+    // let courseList = ''
+    // for(let i=0; i < courses.length; i++){
+    //   courseList += (i + 1) + "- " + courses[i] + "<br>"
+    //   console.log(courseList)
+    // }
+    
+    // document.getElementById('result').innerHTML = courseList
+    // document.getElementById('result').style.color = 'red'
+
+  </script>
+</body>
+</html>

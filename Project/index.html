@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+
+    <style>
+      body{
+         background-color: #f5f5dc; /* antiquewhite */
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      }
+
+      #timer{
+          padding-bottom: 10px;
+          font-size: 36px;
+          border: none;
+      }
+      .sec{
+        padding: 8px 12px;
+
+        margin-left: 50px;
+      font-size: 16px;
+      background:hover
+      text-align: center;
+      width: 120px;
+      }
+     
+      .control{
+
+       display: flex;
+       gap: 15px;
+       
+      }
+     button{
+        width: 50px;
+        height: 30px;
+     }
+     button:hover{
+        background-color: pink;
+     }
+     
+    </style>
+  </head>
+  <body>
+    <div id="timer">0:00</div>
+    <br />
+
+    <div class="sec">
+      <input
+        type="number"
+        id="second"
+        min="1"
+        max="60"
+        placeholder="second"
+        required
+      />
+    </div>
+    <br />
+
+    <div class="control">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+
+ <script>
+  let timerDisplay = document.getElementById("timer");
+  let secondInput = document.getElementById("second");
+  let startBtn = document.getElementById("start");
+  let stopBtn = document.getElementById("stop");
+  let resetBtn = document.getElementById("reset");
+
+  let countdown;
+  let timeLeft = 0;
+  let hasStarted = false; 
+
+ 
+  startBtn.addEventListener("click", () => {
+    
+    if (!countdown) {
+     
+      if (!hasStarted) {
+        timeLeft = parseInt(secondInput.value) || 0;
+        if (timeLeft <= 0) return;
+        hasStarted = true;
+      }
+
+      countdown = setInterval(() => {
+        timeLeft--;
+        updateDisplay(timeLeft);
+
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          countdown = null;
+        }
+      }, 1000);
+    }
+  });
+
+ 
+  stopBtn.addEventListener("click", () => {
+    clearInterval(countdown);
+    countdown = null;
+  });
+
+
+  resetBtn.addEventListener("click", () => {
+    clearInterval(countdown);
+    countdown = null;
+    timeLeft = 0;
+    hasStarted = false;
+    updateDisplay(0);
+    secondInput.value = "";
+  });
+
+
+  function updateDisplay(seconds) {
+    let sec = seconds.toString().padStart(2, "0");
+    timerDisplay.textContent = `0:${sec}`;
+  }
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h2 id="title">SalaIT</h2>
+    <p>There are many IT course available:</p>
+    <p id="availableCourse"></p>
+
+    <form action="">
+      <div>
+        <label for="">Username</label>
+        <input type="text" id="username" /> <br>
+        <span id="usernameError"></span>
+      </div>
+
+      <div>
+        <label for="">Password</label>
+        <input type="text" id="password" /> <br>
+        <span id="passwordError"></span>
+      </div>
+      <button id="btnLogin" type="button">Login</button>
+    </form>
+<script>
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const btnLogin = document.getElementById("btnLogin");
+
+  const usernameError = document.getElementById("usernameError");
+  const passwordError = document.getElementById("passwordError");
+
+  btnLogin.addEventListener("click", function () {
+    validation()
+  });
+
+  function validation() {
+    if (username.value === '') {
+      usernameError.innerText = "Please Enter username"
+      usernameError.style.color = "red"
+    }
+    if (password.value === '') {
+      passwordError.innerText = "Please Enter password"
+      passwordError.style.color = 'red'
+    }
+  }
+</script>
+
+
+  </body>
+</html>
